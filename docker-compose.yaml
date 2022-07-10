@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  webserver:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf/:/etc/letsencrypt
+  <app-name-1>:
+    container_name: <app-name-1>
+    image: <image>
+    ports:
+        - 8081:8081
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+    - ./certbot/www:/var/www/certbot
+    - ./certbot/conf:/etc/letsencrypt
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email <email-adress> -d <domain-name> --agree-tos
