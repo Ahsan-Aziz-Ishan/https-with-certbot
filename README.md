@@ -1,3 +1,8 @@
+1. Edit the docker-compose.yaml file.
+2. run `docker-compose up webserver`.
+3. After nginx directory is created, edit the nginx.conf file and put it inside nginx/conf/.
+4. run `docker-compose up -d`
+
 # Renew Process
 Renewing manually every 90 days can be painful, we can run cronjob for renewing this certificate automatically.
 > `crontab -e`
